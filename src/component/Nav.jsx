@@ -24,7 +24,12 @@ const Nav = () => {
         </ul>
       </div>
       <div>
-        <button className="">Get Started</button>
+      <button
+        className="px-6 py-3 border font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="button"
+      >
+        Get Started
+      </button>
       </div>
     </div>
   );
