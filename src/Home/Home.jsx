@@ -7,7 +7,7 @@ const Home = () => {
         <div>
             <Herro/>
             <RecentBlogs/>
-            
+            <Newsletter/>
         </div>
     );
 };
