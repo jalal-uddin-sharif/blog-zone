@@ -5,11 +5,13 @@ import Home from "../Home/Home";
 import AddBlog from "../Pages/AddBlog";
 import Wishlist from "../Pages/Wishlist";
 import FeaturedBlogs from "../Pages/FeaturedBlogs";
+import Error from "../Pages/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Roots />,
+    errorElement: <Error/>,
     children: [
       {
         path: "/",
