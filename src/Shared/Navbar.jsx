@@ -7,9 +7,9 @@ import { PiInstagramLogoFill } from "react-icons/pi";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="h-40 animated-background bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500">
+    <div className="h-40  animated-background bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500">
       <div className="container mx-auto">
-        <div className="h-16 bg-white  rounded-b-xl">
+        <div className="h-16 ">
           <Nav />
         </div>
 

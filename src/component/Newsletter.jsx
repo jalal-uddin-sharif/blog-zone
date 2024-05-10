@@ -21,11 +21,11 @@ const Newsletter = () => {
                 </div>
             </section> */}
 
-<section className="mt-24 container mx-auto w-full pb-4  items-center lg:flex ">
+            <section className="mt-24 container mx-auto w-full pb-4  items-center lg:flex ">
                 <div className="space-y-4 flex-1 sm:text-center lg:text-left">
                     <h1 className="text-gray-800 font-bold text-4xl xl:text-5xl">
                         Optimize your website for
-                         <span className="text-indigo-600"> Search engine</span>
+                        <span className="text-indigo-600"> Search engine</span>
                     </h1>
                     <p className="text-gray-500 max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
                         It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum
@@ -41,7 +41,7 @@ const Newsletter = () => {
                                 className="text-gray-500 border outline-none p-3 rounded-md w-full sm:w-72"
                             />
                             <button className="outline-none bg-gray-700 text-white text-center px-4 py-3 rounded-md shadow w-full ring-offset-2 ring-gray-700 focus:ring-2  sm:w-auto">
-                                Subscribe 
+                                Subscribe
                             </button>
                         </form>
                     </div>
