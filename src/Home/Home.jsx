@@ -1,4 +1,5 @@
 import Herro from "../component/Herro";
+import Newsletter from "../component/Newsletter";
 import RecentBlogs from "../component/RecentBlogs";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <Herro/>
             <RecentBlogs/>
+            
         </div>
     );
 };
