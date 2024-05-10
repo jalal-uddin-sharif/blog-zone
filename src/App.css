@@ -27,3 +27,8 @@ body{
       background-position: 100% 50%;
   }
 }
+
+
+.min-h{
+  min-height: calc(100vh - (160px + 254px));
+}

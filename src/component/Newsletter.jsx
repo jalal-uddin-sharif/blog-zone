@@ -21,7 +21,7 @@ const Newsletter = () => {
                 </div>
             </section> */}
 
-<section className="mt-24 mx-auto max-w-screen-xl pb-4 px-4 items-center lg:flex md:px-8">
+<section className="mt-24 container mx-auto w-full pb-4  items-center lg:flex ">
                 <div className="space-y-4 flex-1 sm:text-center lg:text-left">
                     <h1 className="text-gray-800 font-bold text-4xl xl:text-5xl">
                         Optimize your website for
