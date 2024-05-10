@@ -1,7 +1,11 @@
+import Herro from "../component/Herro";
+import RecentBlogs from "../component/RecentBlogs";
+
 const Home = () => {
     return (
         <div>
-            home
+            <Herro/>
+            <RecentBlogs/>
         </div>
     );
 };
