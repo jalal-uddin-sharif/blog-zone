@@ -57,7 +57,7 @@ const ViewBlog = () => {
             </div>
 
             <div>
-                <Comments/>
+                <Comments id={id}/>
             </div>
         </div>
     );
