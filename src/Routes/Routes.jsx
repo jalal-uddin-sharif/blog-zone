@@ -7,6 +7,7 @@ import Wishlist from "../Pages/Wishlist";
 import FeaturedBlogs from "../Pages/FeaturedBlogs";
 import Error from "../Pages/Error";
 import Register from "../Authentication/Register";
+import Login from "../Authentication/Login";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,11 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register/>
+
+      },
+      {
+        path: "/login",
+        element: <Login/>
 
       },
     ]

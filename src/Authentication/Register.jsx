@@ -28,9 +28,9 @@ const Register = () => {
                             <div>
                                 <label for="email" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Email</label>
                                 <input type="email" name="email" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-                                    {...register("firstName", { required: true })}
-                                    aria-invalid={errors.firstName ? "true" : "false"} />
-                                {errors.firstName?.type === "required" && (
+                                    {...register("email", { required: true })}
+                                    aria-invalid={errors.email ? "true" : "false"} />
+                                {errors.email?.type === "required" && (
                                     <p role="alert">Email is required</p>
                                 )}
                             </div>
