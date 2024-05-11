@@ -2,9 +2,12 @@ import { LuSendHorizonal } from "react-icons/lu";
 import useAuth from "../customHook/useAuth";
 import useAxiosSecure from "../customHook/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 const Comments = ({id}) => {
     const {user} = useAuth()
     const myAxios = useAxiosSecure()
+    const [test, setTest] = useState(false)
     const handleComments = async(e) =>{
         e.preventDefault()
         const form = e.target;
@@ -19,7 +22,7 @@ const Comments = ({id}) => {
         const data = await myAxios.post("/send-comments", comments)
         if(data.data.insertedId){
             Swal.fire({
-                title: "Good job!",
+                title: "Thanks",
                 text: "Your comment posted",
                 icon: "success"
               });
@@ -27,7 +30,16 @@ const Comments = ({id}) => {
     }
 
 
+ const {data} = useQuery({
+    queryFn: ()=> getData(),
+    queryKey:['comments']
+ })
 
+ console.log(data);
+ const getData = async() =>{
+const {data} = await myAxios('/comments')
+    return data;
+ }
 
 
     return (
@@ -51,7 +63,7 @@ const Comments = ({id}) => {
                 <form onSubmit={handleComments}>
                 <div className="flex gap-2 mt-3">
                     <textarea required placeholder="post your comment" name="comment" id="comment" cols="50" rows="1" className="rounded-full"></textarea>
-                    <button
+                    <button disabled={test && true}
                         class="px-6 border py-3 font-sans text-xs font-bold bg-green-500 text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-green-400 active:bg-gray-900/20"
                         type="submit">
                         <LuSendHorizonal color="white" size={20} />
@@ -60,21 +72,25 @@ const Comments = ({id}) => {
                 </form>
                 
             </div>
-
-            <div className="border p-4 my-4 w-2/3 bg-gray-50 rounded-md">
+            {
+                data?.map(com =>(
+                   <div key={com._id} className="border p-4 my-4 w-2/3 bg-gray-50 rounded-md">
                 <div className="flex items-center gap-x-2">
-                    <img className="object-cover w-16 h-16 rounded-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=faceare&facepad=3&w=688&h=688&q=100" alt="" />
+                    <img className="object-cover w-16 h-16 rounded-full" src={com.image} alt="" />
 
                     <div>
-                        <h1 className="text-xl font-semibold text-gray-700 capitalize dark:text-white">Mia John</h1>
+                        <h1 className="text-xl font-semibold text-gray-700 capitalize dark:text-white">{com.name}</h1>
                     </div>
 
                 </div>
                 <div className="mt-3">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, aperiam iste tempora earum sapiente quos qui sit deserunt tempore omnis.</p>
+                  <p>{com.comment}</p>
                 </div>
                 
-            </div>
+            </div> 
+                ))
+            }
+            
 
         </div>
     );
