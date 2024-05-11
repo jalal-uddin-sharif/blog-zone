@@ -3,8 +3,10 @@ import useAxiosSecure from "../customHook/useAxiosSecure";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import useAuth from "../customHook/useAuth";
 const AddBlog = () => {
     const [cate, setCate] = useState(false)
+    const {user} = useAuth()
 
     const myAxios = useAxiosSecure()
 
@@ -16,12 +18,13 @@ const AddBlog = () => {
         const shortDescription = form.shortDescription.value;
         const description = form.Description.value;
         const category = form.Category.value;
+        const email = user?.email;
         setCate(false)
         if(category === 'random'){
             return setCate(true)
         }
 console.log(category);
-        const blog = {title, image, shortDescription, description, category}
+        const blog = {title, image, shortDescription, description, category, email}
         console.table(blog);
 
         const {data} = await myAxios.post('/blogs', blog)

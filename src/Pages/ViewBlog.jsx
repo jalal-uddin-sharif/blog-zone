@@ -14,7 +14,7 @@ const ViewBlog = () => {
 
     })
 
-    const { image, title, shortDescription, description, category } = data || [];
+    const { image, title, shortDescription, description, category, email } = data || [];
 
     console.log(data);
     const getData = async () => {
@@ -57,7 +57,7 @@ const ViewBlog = () => {
             </div>
 
             <div>
-                <Comments id={id}/>
+                <Comments id={id} email={email}/>
             </div>
         </div>
     );
