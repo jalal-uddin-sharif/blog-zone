@@ -17,7 +17,13 @@ const Comments = ({id}) => {
         console.log(comments);
 
         const data = await myAxios.post("/send-comments", comments)
-       
+        if(data.data.insertedId){
+            Swal.fire({
+                title: "Good job!",
+                text: "Your comment posted",
+                icon: "success"
+              });
+        }
     }
 
 
