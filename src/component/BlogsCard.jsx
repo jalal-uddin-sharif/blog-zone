@@ -68,13 +68,14 @@ const BlogsCard = ({ blogs }) => {
                 </div>
                 <div className="border text-black border-t-0 text-start flex justify-between px-4 pb-2">
 
-                  <Link to={`blog/${blog._id}`}><Button gradientDuoTone="greenToBlue">View details</Button></Link>
+                  <Link to={`/blog/${blog._id}`}><Button gradientDuoTone="greenToBlue">View details</Button></Link>
                   <Button gradientDuoTone="purpleToPink">Add to wishlist</Button>
 
                 </div>
 
               </div>
             </a>
+
           ))
         }
 
@@ -84,3 +85,6 @@ const BlogsCard = ({ blogs }) => {
 };
 
 export default BlogsCard;
+
+
+

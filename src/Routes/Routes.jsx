@@ -8,6 +8,7 @@ import FeaturedBlogs from "../Pages/FeaturedBlogs";
 import Error from "../Pages/Error";
 import Register from "../Authentication/Register";
 import Login from "../Authentication/Login";
+import ViewBlog from "../Pages/ViewBlog";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,11 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login/>
+
+      },
+      {
+        path: "/blog/:id",
+        element: <ViewBlog/>
 
       },
     ]
