@@ -1,7 +1,14 @@
 import { Dropdown } from "flowbite-react";
+import useAxiosSecure from "../customHook/useAxiosSecure";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useState } from "react";
 const AddBlog = () => {
+    const [cate, setCate] = useState(false)
 
-    const handleForm = (e) =>{
+    const myAxios = useAxiosSecure()
+
+    const handleForm = async(e) =>{
         e.preventDefault();
         const form = e.target;
         const title = form.Title.value;
@@ -9,9 +16,25 @@ const AddBlog = () => {
         const shortDescription = form.shortDescription.value;
         const description = form.Description.value;
         const category = form.Category.value;
-
+        setCate(false)
+        if(category === 'random'){
+            return setCate(true)
+        }
+console.log(category);
         const blog = {title, image, shortDescription, description, category}
-console.table(blog);
+        console.table(blog);
+
+        const {data} = await myAxios.post('/blogs', blog)
+        if(data.insertedId){
+            Swal.fire({
+                title: "Good job!",
+                text: "You clicked the button!",
+                icon: "success"
+              });
+              form.reset()
+        }
+        console.log(data);
+        // const data = axios.post('http://localhost:3011/blogs', blog)
     }
     return (
         <div>
@@ -28,35 +51,38 @@ console.table(blog);
 
                         <div className="sm:col-span-2">
                             <label for="Title" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Title</label>
-                            <input name="Title" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                            <input required name="Title" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                         </div>
                         <div className="sm:col-span-2">
                             <label for="Image" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Image</label>
-                            <input name="Image" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                            <input required name="Image" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                         </div>
                         
 
                         <div>
-                            <label for="Category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                            <label for="Category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {
+                                    cate ? <span className="text-red-700">Must select one option *</span> : "Select an option "
+                                }
+                                </label>
                             <select id="Category"
                             name="Category"
                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Select category</option>
-                                <option value="US">United States</option>
-                                <option value="CA">Canada</option>
-                                <option value="FR">France</option>
-                                <option value="DE">Germany</option>
+                                <option selected value="random">Select category</option>
+                                <option value="tricks">Tricks</option>
+                                <option value="tech_news">Tech News</option>
+                                <option value="apps_review">Apps review</option>
                             </select>
                         </div>
 
                         <div className="sm:col-span-2">
                             <label for="shortDescription" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Short description</label>
-                            <input name="shortDescription" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                            <input required name="shortDescription" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                         </div>
 
                         <div className="sm:col-span-2">
                             <label for="Description" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Description</label>
-                            <textarea name="Description" className="h-40 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"></textarea>
+                            <textarea required name="Description" className="h-40 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"></textarea>
                         </div>
 
                         <div className="flex items-center justify-between sm:col-span-2">
