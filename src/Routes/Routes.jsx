@@ -6,6 +6,7 @@ import AddBlog from "../Pages/AddBlog";
 import Wishlist from "../Pages/Wishlist";
 import FeaturedBlogs from "../Pages/FeaturedBlogs";
 import Error from "../Pages/Error";
+import Register from "../Authentication/Register";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,11 @@ export const router = createBrowserRouter([
       {
         path: "/wishlist",
         element: <Wishlist/>
+
+      },
+      {
+        path: "/register",
+        element: <Register/>
 
       },
     ]
