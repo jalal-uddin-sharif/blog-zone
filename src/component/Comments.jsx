@@ -40,7 +40,8 @@ const Comments = ({ id, dbEmail }) => {
 
     console.log(data);
     const getData = async () => {
-        const { data } = await myAxios('/comments')
+        const { data } = await myAxios(`/comments/${id}`)
+        console.log(data);
         return data;
     }
 

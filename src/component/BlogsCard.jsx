@@ -1,7 +1,17 @@
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
+import { HiOutlineSearchCircle } from "react-icons/hi";
+import { LuSendHorizonal } from "react-icons/lu";
 
-const BlogsCard = ({ blogs, setFilter }) => {
+
+
+const BlogsCard = ({ blogs, setFilter, setSearch}) => {
+  const handleSearch = (e) =>{
+    e.preventDefault()
+    const searchText = e.target.search.value;
+    setSearch(searchText)
+
+  }
   return (
     <div className="container mx-auto">
       <div className="mb-10 mt-16 md:mx-auto sm:text-center md:mb-12">
@@ -44,11 +54,10 @@ const BlogsCard = ({ blogs, setFilter }) => {
       </div>
       <div>
       <div className="my-12">
-                    <form className="max-w-sm mx-auto">
-                        <label for="Category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            select an option
-                        </label>
-                        <select
+                    <div className="flex justify-center gap-4">
+    
+                      <div className="w-1/4">
+                      <select
                             onChange={e => setFilter(e.target.value)}
                             id="Category"
                             name="Category"
@@ -59,7 +68,19 @@ const BlogsCard = ({ blogs, setFilter }) => {
                             <option value="tech_news">Tech News</option>
                             <option value="apps_review">Apps review</option>
                         </select>
-                    </form>
+                      </div>
+
+                        <div className="w-1/3 relative">
+                         <form onSubmit={handleSearch}>
+                         <input type="text" name="search" className="w-full rounded-lg py-2" />
+                          <button
+                            class="px-3 absolute end-1 border py-[8px] mt-1 font-sans text-xs font-bold bg-purple-500 text-center text-white uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-green-400 active:bg-gray-900/20"
+                            type="submit">
+                            Search
+                        </button>
+                         </form>
+                        </div>
+                    </div>
                 </div>
       </div>
       <div className="grid gap-8 row-gap-5 mb-8 w-full lg:grid-cols-4 sm:grid-cols-2">
