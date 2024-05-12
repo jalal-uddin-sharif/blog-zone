@@ -8,7 +8,7 @@ const Allblogs = () => {
     const myAxios = useAxiosSecure()
     const [filter, setFilter] = useState("")
     const [search, setSearch] = useState("")
-    console.log(typeof search);
+
 
     // console.log(filter);
 

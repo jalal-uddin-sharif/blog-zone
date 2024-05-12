@@ -1,16 +1,37 @@
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { HiOutlineSearchCircle } from "react-icons/hi";
-import { LuSendHorizonal } from "react-icons/lu";
+import useAxiosSecure from "../customHook/useAxiosSecure";
+import Swal from "sweetalert2";
+import useAuth from "../customHook/useAuth";
 
 
 
 const BlogsCard = ({ blogs, setFilter, setSearch}) => {
+  const {user} = useAuth()
+  const myAxios = useAxiosSecure()
   const handleSearch = (e) =>{
     e.preventDefault()
     const searchText = e.target.search.value;
     setSearch(searchText)
 
+  }
+  const handleWishlist = async(blog) =>{
+    blog.email = user?.email;
+    //challenges
+    if (blog._id) {
+      blog.id = blog._id;
+      delete blog._id;
+    }
+    const data = await myAxios.post("/wishlist", blog)
+    console.log(data.data);
+    if(data.data.insertedId){
+      Swal.fire({
+        icon: "success",
+        title: "Added to wishlist",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
   }
   return (
     <div className="container mx-auto">
@@ -111,7 +132,7 @@ const BlogsCard = ({ blogs, setFilter, setSearch}) => {
                 <div className="border text-black border-t-0 text-start flex justify-between px-4 pb-2">
 
                   <Link to={`/blog/${blog._id}`}><Button gradientDuoTone="greenToBlue">View details</Button></Link>
-                  <Button gradientDuoTone="purpleToPink">Add to wishlist</Button>
+                  <Button onClick={()=>handleWishlist(blog)} gradientDuoTone="purpleToPink">Add to wishlist</Button>
 
                 </div>
 
