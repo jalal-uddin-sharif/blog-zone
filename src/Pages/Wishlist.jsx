@@ -14,7 +14,7 @@ const Wishlist = () => {
     const { data: WishlistData = [],
         isLoading, refetch } = useQuery({
             queryFn: () => getData(),
-            queryKey: ['WishlistData']
+            queryKey: ['WishlistData', user?.email]
         })
 
 

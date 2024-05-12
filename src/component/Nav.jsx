@@ -46,6 +46,9 @@ const Nav = () => {
           <NavLink to={'/all-blogs'}>All Blog</NavLink>
         </Navbar.Link>
         <Navbar.Link>
+          <NavLink to={'/update-blogs'}>Update Blogs</NavLink>
+        </Navbar.Link>
+        <Navbar.Link>
           <NavLink to={'/featured-blogs'}>Featured Blogs</NavLink>
         </Navbar.Link>
         <Navbar.Link>

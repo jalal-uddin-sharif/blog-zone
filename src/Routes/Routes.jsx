@@ -9,6 +9,7 @@ import Error from "../Pages/Error";
 import Register from "../Authentication/Register";
 import Login from "../Authentication/Login";
 import ViewBlog from "../Pages/ViewBlog";
+import UpdateBlogs from "../Pages/UpdateBlogs";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,11 @@ export const router = createBrowserRouter([
       {
         path: "/featured-blogs",
         element: <FeaturedBlogs/>
+
+      },
+      {
+        path: "/update-blogs/:id",
+        element: <UpdateBlogs/>
 
       },
       {
