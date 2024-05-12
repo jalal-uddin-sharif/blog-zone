@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import useAxiosSecure from "../customHook/useAxiosSecure";
 import Comments from "../component/Comments";
 
-const ViewBlog = () => {
+const ViewBlog = ({setFilter}) => {
     const { id } = useParams()
     const myAxios = useAxiosSecure()
 
@@ -57,7 +57,7 @@ const ViewBlog = () => {
             </div>
 
             <div>
-                <Comments id={id} email={email}/>
+                <Comments id={id} dbEmail={email}/>
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 
-const BlogsCard = ({ blogs }) => {
+const BlogsCard = ({ blogs, setFilter }) => {
   return (
     <div className="container mx-auto">
       <div className="mb-10 mt-16 md:mx-auto sm:text-center md:mb-12">
@@ -42,6 +42,26 @@ const BlogsCard = ({ blogs }) => {
         Explore a world of diverse perspectives and topics with our 'All Blogs' section, where every post is a unique journey waiting to be discovered.
         </p>
       </div>
+      <div>
+      <div className="my-12">
+                    <form className="max-w-sm mx-auto">
+                        <label for="Category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            select an option
+                        </label>
+                        <select
+                            onChange={e => setFilter(e.target.value)}
+                            id="Category"
+                            name="Category"
+
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected value="" >All blogs</option>
+                            <option value="tricks">Tricks</option>
+                            <option value="tech_news">Tech News</option>
+                            <option value="apps_review">Apps review</option>
+                        </select>
+                    </form>
+                </div>
+      </div>
       <div className="grid gap-8 row-gap-5 mb-8 w-full lg:grid-cols-4 sm:grid-cols-2">
 
         {
@@ -58,6 +78,7 @@ const BlogsCard = ({ blogs }) => {
                 />
                 <div className="flex-grow border border-b-0 ">
                   <div className="p-5">
+                    <h1 className="text-blue-600 mb-1">{blog.category}</h1>
                     <h6 className="mb-2 font-semibold leading-5">
                       {blog.title}
                     </h6>
