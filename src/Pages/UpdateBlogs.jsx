@@ -4,12 +4,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import useAuth from "../customHook/useAuth";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 const UpdateBlogs = () => {
     const {id} = useParams()
     console.log(id);
-    const { user } = useAuth()
+  const navigate = useNavigate()
 
     const myAxios = useAxiosSecure()
 
@@ -50,6 +50,7 @@ const UpdateBlogs = () => {
                 text: "Successfully updated",
                 icon: "success"
             });
+            navigate(`/blog/${id}`)
         }
         console.log(data);
     }

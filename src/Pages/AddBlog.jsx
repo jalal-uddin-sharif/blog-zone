@@ -35,7 +35,7 @@ console.log(category);
                 text: "You clicked the button!",
                 icon: "success"
               });
-            //   form.reset()
+              form.reset()
         }
         console.log(data);
     }
