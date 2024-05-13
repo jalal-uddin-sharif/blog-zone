@@ -5,13 +5,30 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import useAuth from "../customHook/useAuth";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 const UpdateBlogs = () => {
     const {id} = useParams()
     console.log(id);
-    const [cate, setCate] = useState(false)
     const { user } = useAuth()
 
     const myAxios = useAxiosSecure()
+
+
+    
+    const { data } = useQuery({
+        queryFn: () => getData(),
+        queryKey: ['blog']
+
+    })
+
+    const { image, title, shortDescription, description, category, email } = data || [];
+
+    console.log(title);
+    const getData = async () => {
+        const data = await myAxios(`/blog/${id}`)
+        return data.data;
+    }
+
 
     const handleForm = async (e) => {
         e.preventDefault();
@@ -22,19 +39,16 @@ const UpdateBlogs = () => {
         const description = form.Description.value;
         const category = form.Category.value;
         const email = user?.email;
-        setCate(false)
-        if (category === 'random') {
-            return setCate(true)
-        }
+    
         console.log(category);
         const blog = { title, image, shortDescription, description, category, email }
         console.table(blog);
 
-        const { data } = await myAxios.post('/blogs', blog)
-        if (data.insertedId) {
+        const { data } = await myAxios.put(`/update-blogs/${id}`, blog)
+        if (data.modifiedCount>0) {
             Swal.fire({
-                title: "Good job!",
-                text: "You clicked the button!",
+                title: "Updated",
+                text: "Successfully updated",
                 icon: "success"
             });
         }
@@ -46,7 +60,7 @@ const UpdateBlogs = () => {
                 <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
 
                     <div className="mb-10 md:mb-16">
-                        <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Create New Blog</h2>
+                        <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Update Blog</h2>
 
                         <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">create or add your new blog by following filled below</p>
                     </div>
@@ -55,24 +69,23 @@ const UpdateBlogs = () => {
 
                         <div className="sm:col-span-2">
                             <label for="Title" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Title</label>
-                            <input required name="Title" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                            <input required defaultValue={title} name="Title" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                         </div>
                         <div className="sm:col-span-2">
                             <label for="Image" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Image</label>
-                            <input required name="Image" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                            <input defaultValue={image} required name="Image" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                         </div>
 
 
                         <div>
                             <label for="Category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                {
-                                    cate ? <span className="text-red-700">Must select one option *</span> : "Select an option "
-                                }
+                            Select an option
                             </label>
-                            <select id="Category"
+                            <select
+                            defaultValue={category}
+                             id="Category"
                                 name="Category"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected value="random">Select category</option>
                                 <option value="tricks">Tricks</option>
                                 <option value="tech_news">Tech News</option>
                                 <option value="apps_review">Apps review</option>
@@ -81,16 +94,16 @@ const UpdateBlogs = () => {
 
                         <div className="sm:col-span-2">
                             <label for="shortDescription" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Short description</label>
-                            <input required name="shortDescription" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                            <input defaultValue={shortDescription} required name="shortDescription" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                         </div>
 
                         <div className="sm:col-span-2">
                             <label for="Description" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Description</label>
-                            <textarea required name="Description" className="h-40 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"></textarea>
+                            <textarea defaultValue={description} required name="Description" className="h-40 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"></textarea>
                         </div>
 
                         <div className="flex items-center justify-between sm:col-span-2">
-                            <button type="submit" className="inline-block w-full rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Submit</button>
+                            <button type="submit" className="inline-block w-full rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Update</button>
 
                         </div>
                     </form>
