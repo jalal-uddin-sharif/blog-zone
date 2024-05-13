@@ -7,22 +7,30 @@ import useAuth from "../customHook/useAuth";
 
 
 const BlogsCard = ({ blogs, setFilter, setSearch}) => {
+
+  console.log(blogs);
   const {user} = useAuth()
+  console.log(user?.email);
   const myAxios = useAxiosSecure()
   const handleSearch = (e) =>{
     e.preventDefault()
     const searchText = e.target.search.value;
     setSearch(searchText)
-
+    
   }
   const handleWishlist = async(blog) =>{
-    blog.email = user?.email;
-    //challenges
+    // blog.email = user?.email;
+    // //challenges
     if (blog._id) {
       blog.id = blog._id;
       delete blog._id;
     }
-    const data = await myAxios.post("/wishlist", blog)
+
+    const id = blog.id 
+    const email = user?.email
+    const listData = {id, email}
+    console.log(listData);
+    const data = await myAxios.post("/wishlist", listData)
     console.log(data.data);
     if(data.data.insertedId){
       Swal.fire({
