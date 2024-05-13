@@ -21,7 +21,7 @@ const UpdateBlogs = () => {
 
     })
 
-    const { image, title, shortDescription, description, category, email } = data || [];
+    const { image, title, shortDescription, description, category, email, timestamp } = data || [];
 
     console.log(title);
     const getData = async () => {
@@ -38,10 +38,9 @@ const UpdateBlogs = () => {
         const shortDescription = form.shortDescription.value;
         const description = form.Description.value;
         const category = form.Category.value;
-        const email = user?.email;
     
         console.log(category);
-        const blog = { title, image, shortDescription, description, category, email }
+        const blog = { title, image, shortDescription, description, category, email, timestamp }
         console.table(blog);
 
         const { data } = await myAxios.put(`/update-blogs/${id}`, blog)
