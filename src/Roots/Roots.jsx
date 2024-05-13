@@ -3,6 +3,7 @@ import Navbar from "../Shared/Navbar";
 import Footer from "../Shared/Footer";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from "react-hot-toast";
 
 
 const Roots = () => {
@@ -14,6 +15,7 @@ const Roots = () => {
             </div>
             <Footer/>
             <ToastContainer/>
+            <Toaster/>
         </div>
     );
 };

@@ -1,17 +1,20 @@
 import { Button } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../customHook/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../customHook/useAuth";
+import toast from "react-hot-toast";
+import useAddWishlist from "../customHook/useAddWishlist";
 
 
 
 const BlogsCard = ({ blogs, setFilter, setSearch}) => {
 
-  console.log(blogs);
+  const navigate = useNavigate()
   const {user} = useAuth()
   console.log(user?.email);
   const myAxios = useAxiosSecure()
+  const {addData} = useAddWishlist()
   const handleSearch = (e) =>{
     e.preventDefault()
     const searchText = e.target.search.value;
@@ -19,6 +22,10 @@ const BlogsCard = ({ blogs, setFilter, setSearch}) => {
     
   }
   const handleWishlist = async(blog) =>{
+    if(!user?.email){
+      toast.error("login first")
+     return navigate("/login")
+    }
     // blog.email = user?.email;
     // //challenges
     if (blog._id) {
@@ -30,16 +37,17 @@ const BlogsCard = ({ blogs, setFilter, setSearch}) => {
     const email = user?.email
     const listData = {id, email}
     console.log(listData);
-    const data = await myAxios.post("/wishlist", listData)
-    console.log(data.data);
-    if(data.data.insertedId){
-      Swal.fire({
-        icon: "success",
-        title: "Added to wishlist",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    }
+     addData(listData)
+    // const data = await myAxios.post("/wishlist", listData)
+    // console.log(data.data);
+    // if(data.data.insertedId){
+    //   Swal.fire({
+    //     icon: "success",
+    //     title: "Added to wishlist",
+    //     showConfirmButton: false,
+    //     timer: 1500
+    //   });
+    // }
   }
   return (
     <div className="container mx-auto">
@@ -123,7 +131,7 @@ const BlogsCard = ({ blogs, setFilter, setSearch}) => {
               <div className="flex flex-col h-full">
                 <img
                   src={blog.image}
-                  className="object-cover w-full h-48"
+                  className="object-cover w-full h-[250px]"
                   alt=""
                 />
                 <div className="flex-grow border border-b-0 ">

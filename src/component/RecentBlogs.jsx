@@ -31,11 +31,11 @@ const RecentBlogs = () => {
                 <div className="grid gap-8 lg:grid-cols-4 sm:max-w-sm sm:mx-auto lg:max-w-full">
                     {
                         data?.map(blog => (
-                            <div key={blog._id} className="overflow-hidden relative hover:shadow-xl border border-red-700 transition-shadow duration-300 bg-white rounded shadow-sm">
+                            <div key={blog._id} className="overflow-hidden relative hover:shadow-xl border  transition-shadow duration-300 bg-white rounded shadow-sm">
                                 <div>
                                     <img
                                         src="https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                                        className="object-cover w-full h-72"
+                                        className="object-cover w-full h-[250px]"
                                         alt=""
                                     />
                                     <div className="p-5 mb-8">
