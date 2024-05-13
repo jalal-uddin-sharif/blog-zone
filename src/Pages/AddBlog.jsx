@@ -19,12 +19,13 @@ const AddBlog = () => {
         const description = form.Description.value;
         const category = form.Category.value;
         const email = user?.email;
+        const timestamp = new Date()
         setCate(false)
         if(category === 'random'){
             return setCate(true)
         }
 console.log(category);
-        const blog = {title, image, shortDescription, description, category, email}
+        const blog = {title, image, shortDescription, description, category, email, timestamp}
         console.table(blog);
 
         const {data} = await myAxios.post('/blogs', blog)
@@ -34,7 +35,7 @@ console.log(category);
                 text: "You clicked the button!",
                 icon: "success"
               });
-              form.reset()
+            //   form.reset()
         }
         console.log(data);
     }

@@ -1,7 +1,20 @@
 import { Button } from "flowbite-react";
+import useAxiosSecure from "../customHook/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 
 const RecentBlogs = () => {
+    const myAxios = useAxiosSecure()
+
+    const { data } = useQuery({
+        queryFn: ()=> getData(),
+        queryKey: ['recentblogs']
+    })
+    console.log(data);
+    const getData = async () => {
+        const data = await myAxios("/recent-blogs")
+        return data.data
+    }
     return (
         <div className="container mx-auto">
             <div>
