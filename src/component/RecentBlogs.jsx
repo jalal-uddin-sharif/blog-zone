@@ -1,11 +1,16 @@
 import { Button } from "flowbite-react";
 import useAxiosSecure from "../customHook/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import useAuth from "../customHook/useAuth";
+import useAddWishlist from "../customHook/useAddWishlist";
 
 
 const RecentBlogs = () => {
     const myAxios = useAxiosSecure()
+    const {user} = useAuth()
+    const {addData} = useAddWishlist()
+    const navigate = useNavigate()
 
     const { data } = useQuery({
         queryFn: () => getData(),
@@ -21,6 +26,15 @@ const RecentBlogs = () => {
         const date = new Date(dateTime)
         const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }
         return date.toLocaleDateString('en-Us', options)
+    }
+
+    const handleWishlist = (id) =>{
+        if(!user?.email){
+            return navigate("/login")
+        }
+        const email = user?.email
+        const listData = {id, email}
+        addData(listData)
     }
     return (
         <div className="container mx-auto">
@@ -67,7 +81,7 @@ const RecentBlogs = () => {
                                     <div className="flex gap-10 absolute bottom-2 justify-around w-full mt-auto ">
                                             <Link to={`/blog/${blog._id}`}><Button gradientDuoTone="greenToBlue"> View Details
                                             </Button></Link>
-                                            <Button gradientDuoTone="purpleToPink">Add to wishlist</Button>
+                                            <Button onClick={()=>handleWishlist(blog._id)} gradientDuoTone="purpleToPink">Add to wishlist</Button>
                                         </div>
                                 </div>
                             </div>

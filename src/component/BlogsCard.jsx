@@ -24,7 +24,7 @@ const BlogsCard = ({ blogs, setFilter, setSearch}) => {
   const handleWishlist = async(blog) =>{
     if(!user?.email){
       toast.error("login first")
-     return navigate("/login")
+      return navigate("/login")
     }
     // blog.email = user?.email;
     // //challenges
@@ -32,7 +32,7 @@ const BlogsCard = ({ blogs, setFilter, setSearch}) => {
       blog.id = blog._id;
       delete blog._id;
     }
-
+    console.log(blog.id);
     const id = blog.id 
     const email = user?.email
     const listData = {id, email}
