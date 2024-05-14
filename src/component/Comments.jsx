@@ -3,6 +3,7 @@ import useAuth from "../customHook/useAuth";
 import useAxiosSecure from "../customHook/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 const Comments = ({ id, dbEmail }) => {
     const { user } = useAuth()
     const myAxios = useAxiosSecure()
@@ -13,12 +14,14 @@ const Comments = ({ id, dbEmail }) => {
         const email = user?.email
         const image = user?.photoURL
         const name = user?.displayName
+        const timestamp = new Date()
 
-        const comments = { id, name, email, image, comment }
+        const comments = { id, name, email, image, comment, timestamp }
         console.log(comments);
 
-        if(dbEmail !== email){
+        if(user && dbEmail !== email){
               const data = await myAxios.post("/send-comments", comments)
+              form.reset()
 
         if (data.data.insertedId) {
             refetch()
@@ -28,6 +31,9 @@ const Comments = ({ id, dbEmail }) => {
                 icon: "success"
             });
         }
+        }
+        else{
+         return   toast.error("login first")
         }
       
     }
@@ -80,7 +86,7 @@ const Comments = ({ id, dbEmail }) => {
                 data?.map(com => (
                     <div key={com._id} className="border p-4 my-4 w-2/3 bg-gray-50 rounded-md">
                         <div className="flex items-center gap-x-2">
-                            <img className="object-cover w-16 h-16 rounded-full" src={com.image} alt="" />
+                            <img className="object-cover w-12 h-12 rounded-full" src={com.image} alt="" />
 
                             <div>
                                 <h1 className="text-xl font-semibold text-gray-700 capitalize dark:text-white">{com.name}</h1>

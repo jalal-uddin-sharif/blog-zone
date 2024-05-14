@@ -23,7 +23,7 @@ const UpdateBlogs = () => {
 
     const { image, title, shortDescription, description, category, email, timestamp } = data || [];
 
-    console.log(title);
+    console.log(email);
     const getData = async () => {
         const data = await myAxios(`/blog/${id}`)
         return data.data;

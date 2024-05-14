@@ -1,9 +1,13 @@
+import { motion } from "framer-motion";
+
 const Herro = () => {
     return (
 
 <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="grid gap-10 lg:grid-cols-2">
-        <div className="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
+        <motion.div
+        whileHover={{scale: 1.1}}
+        className="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
           <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-teal-accent-400">
             <svg className="text-teal-900 w-7 h-7" viewBox="0 0 24 24">
               <polyline
@@ -49,17 +53,13 @@ const Herro = () => {
           </div>
           <div className="max-w-xl mb-6">
             <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-              Let us handle
+            Your Gateway 
               <br className="hidden md:block" />
-              your next{' '}
-              <span className="inline-block text-deep-purple-accent-400">
-                destination
-              </span>
+              to Innovation and Insights
+              
             </h2>
             <p className="text-base text-gray-700 md:text-lg">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae. explicabo.
+            your go-to destination for the latest in tech news, insightful tips, and innovative tricks. Explore our banner section to stay ahead of the curve, uncovering cutting-edge trends and unlocking the secrets to mastering technology in the digital age
             </p>
           </div>
           <div>
@@ -78,8 +78,8 @@ const Herro = () => {
               </svg>
             </a>
           </div>
-        </div>
-        <div className="flex items-center justify-center -mx-4 lg:pl-8">
+        </motion.div>
+        <motion.div whileHover={{scale: 1.1}} className="flex items-center justify-center -mx-4 lg:pl-8">
           <div className="flex flex-col items-end px-3">
             <img
               className="object-cover mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56"
@@ -99,7 +99,7 @@ const Herro = () => {
               alt=""
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
     );

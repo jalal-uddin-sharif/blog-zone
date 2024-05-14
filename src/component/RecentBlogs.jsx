@@ -4,12 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import useAuth from "../customHook/useAuth";
 import useAddWishlist from "../customHook/useAddWishlist";
+import { motion } from "framer-motion";
 
 
 const RecentBlogs = () => {
     const myAxios = useAxiosSecure()
-    const {user} = useAuth()
-    const {addData} = useAddWishlist()
+    const { user } = useAuth() || {}
+    const { addData } = useAddWishlist()
     const navigate = useNavigate()
 
     const { data } = useQuery({
@@ -28,27 +29,36 @@ const RecentBlogs = () => {
         return date.toLocaleDateString('en-Us', options)
     }
 
-    const handleWishlist = (id) =>{
-        if(!user?.email){
+    const handleWishlist = (id) => {
+        if (!user?.email) {
             return navigate("/login")
         }
         const email = user?.email
-        const listData = {id, email}
+        const listData = { id, email }
         addData(listData)
     }
+
+    const gridSquareVariants = {
+        hidden: { opacity: 0, y: -100 },
+        show: { opacity: 1, y: 0 },
+        
+    }
     return (
-        <div className="container mx-auto">
+        <div className="lg:container lg:mx-auto md:mx-4  mx-4 sm:mx-auto">
             <div>
                 <h1 className="border-l-2 text-2xl px-2 border-green-700 my-4">Recent Blogs</h1>
             </div>
-            <div className=" mx-auto sm:max-w-xl md:max-w-full  md: lg:px- lg:">
-                <div className="grid gap-8 lg:grid-cols-4 sm:max-w-sm sm:mx-auto lg:max-w-full">
+            <div className="">
+                <div className="grid gap-8 lg:grid-cols-4 md:grid-cols-2 ">
                     {
                         data?.map(blog => (
-                            <div key={blog._id} className="overflow-hidden relative hover:shadow-xl border  transition-shadow duration-300 bg-white rounded shadow-sm">
+                            <motion.div 
+                            variants={gridSquareVariants}
+                             key={blog._id} className="overflow-hidden relative hover:shadow-xl border  transition-shadow duration-300 bg-white rounded shadow-sm">
                                 <div>
-                                    <img
-                                        src="https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+                                    <motion.img
+                                    whileHover={{scale: 1.05}}
+                                        src={blog.image}
                                         className="object-cover w-full h-[250px]"
                                         alt=""
                                     />
@@ -75,16 +85,16 @@ const RecentBlogs = () => {
                                             {blog.title}
                                         </a>
                                         <p className="mb-2 text-gray-700">
-                                            {blog.shortDescription}
+                                            {blog.shortDescription.slice(0, 100)} ...
                                         </p>
                                     </div>
                                     <div className="flex gap-10 absolute bottom-2 justify-around w-full mt-auto ">
-                                            <Link to={`/blog/${blog._id}`}><Button gradientDuoTone="greenToBlue"> View Details
-                                            </Button></Link>
-                                            <Button onClick={()=>handleWishlist(blog._id)} gradientDuoTone="purpleToPink">Add to wishlist</Button>
-                                        </div>
+                                        <Link to={`/blog/${blog._id}`}><Button gradientDuoTone="greenToBlue"> View Details
+                                        </Button></Link>
+                                        <Button onClick={() => handleWishlist(blog._id)} gradientDuoTone="purpleToPink">Add to wishlist</Button>
+                                    </div>
                                 </div>
-                            </div>
+                            </motion.div>
 
                         ))
                     }

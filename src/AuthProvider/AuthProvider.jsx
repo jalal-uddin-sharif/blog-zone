@@ -10,6 +10,8 @@ import {
   } from "firebase/auth";
   import { createContext, useEffect, useState } from "react";
 import { app } from "../Firebase/firebase.config";
+import useAxiosSecure from "../customHook/useAxiosSecure";
+const myAxios = useAxiosSecure()
 
   
   export const AuthContext = createContext(null);
@@ -29,8 +31,15 @@ import { app } from "../Firebase/firebase.config";
     };
   
     useEffect(() => {
-      const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const unSubscribe = onAuthStateChanged(auth, async(currentUser) => {
         setUser(currentUser);
+        const email = currentUser.reloadUserInfo
+        console.log(currentUser);
+        if(currentUser.reloadUserInfo){
+          const {data} = await myAxios.post('/jwt', email)
+          console.log(currentUser.reloadUserInfo.email);
+          console.log(data);
+        } 
         setLoading(false);
       });
       return () => {
@@ -42,9 +51,11 @@ import { app } from "../Firebase/firebase.config";
     const googleProvide = new GoogleAuthProvider();
     const googleLogin = (location, navigate) => {
       signInWithPopup(auth, googleProvide)
-        .then((res) => {
+        .then(async(res) => {
           setUser(res.user);
           navigate(location?.state || "/");
+          
+          // console.log(data);
         })
         .catch((err) =>{
           //  console.log(err)
@@ -63,14 +74,10 @@ import { app } from "../Firebase/firebase.config";
         });
     };
 
-    const logOut = () => {
-        signOut(auth)
-          .then((res) => {
-            // console.log(res)
-          })
-          .catch((err) => {
-            // console.log(err)
-          });
+    const logOut = async() => {
+      const {data} = await myAxios.post('/logout')
+      console.log(data);
+       return signOut(auth)
       };
   
     const authInfo = {

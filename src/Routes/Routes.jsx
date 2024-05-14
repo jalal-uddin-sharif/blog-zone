@@ -10,6 +10,7 @@ import Register from "../Authentication/Register";
 import Login from "../Authentication/Login";
 import ViewBlog from "../Pages/ViewBlog";
 import UpdateBlogs from "../Pages/UpdateBlogs";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -27,22 +28,22 @@ export const router = createBrowserRouter([
       },
       {
         path: "/add-blogs",
-        element: <AddBlog/>
+        element: <PrivateRoute><AddBlog/></PrivateRoute>
 
       },
       {
         path: "/featured-blogs",
-        element: <FeaturedBlogs/>
+        element: <PrivateRoute><FeaturedBlogs/></PrivateRoute>
 
       },
       {
         path: "/update-blogs/:id",
-        element: <UpdateBlogs/>
+        element: <PrivateRoute><UpdateBlogs/></PrivateRoute>
 
       },
       {
         path: "/wishlist",
-        element: <Wishlist/>
+        element: <PrivateRoute><Wishlist/></PrivateRoute>
 
       },
       {

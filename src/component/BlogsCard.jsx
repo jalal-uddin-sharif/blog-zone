@@ -50,7 +50,7 @@ const BlogsCard = ({ blogs, setFilter, setSearch}) => {
     // }
   }
   return (
-    <div className="container mx-auto">
+    <div className="lg:container lg:mx-auto mx-4">
       <div className="mb-10 mt-16 md:mx-auto sm:text-center md:mb-12">
         <div>
           <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
@@ -91,9 +91,9 @@ const BlogsCard = ({ blogs, setFilter, setSearch}) => {
       </div>
       <div>
       <div className="my-12">
-                    <div className="flex justify-center gap-4">
+                    <div className="flex lg:flex-row md:flex-row flex-col justify-center gap-4">
     
-                      <div className="w-1/4">
+                      <div className="lg:w-/4 md:w-2/3">
                       <select
                             onChange={e => setFilter(e.target.value)}
                             id="Category"
@@ -107,7 +107,7 @@ const BlogsCard = ({ blogs, setFilter, setSearch}) => {
                         </select>
                       </div>
 
-                        <div className="w-1/3 relative">
+                        <div className="lg:w-1/3 md:w-2/3 relative">
                          <form onSubmit={handleSearch}>
                          <input type="text" name="search" className="w-full rounded-lg py-2" />
                           <button
