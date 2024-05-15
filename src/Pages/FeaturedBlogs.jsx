@@ -26,7 +26,7 @@ const FeaturedBlogs = () => {
   };
 
   //tanstack table
-  // const columnHelper = createColumnHelper()
+ 
   const columns = [
     {
       header: "SI No",

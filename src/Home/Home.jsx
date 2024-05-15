@@ -1,4 +1,5 @@
 import Herro from "../component/Herro";
+import MeetOurTeam from "../component/MeetOurTeam";
 import Newsletter from "../component/Newsletter";
 import RecentBlogs from "../component/RecentBlogs";
 import {motion} from 'framer-motion'
@@ -16,6 +17,7 @@ const Home = () => {
         >
             <Herro/>
             <RecentBlogs/>
+            <MeetOurTeam/>
             <Newsletter/>
         </motion.div>
     );
