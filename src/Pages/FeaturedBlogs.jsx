@@ -28,20 +28,20 @@ const FeaturedBlogs = () => {
             cell: (info) => info.row.index + 1
         },
         {
-            header: 'Author Profile',
-            accessorKey: 'authorProfile',
-            cell: (info) => <span>
-                <img src={info?.getValue()} alt="" className="rounded-full w-10 h-10" />
-            </span>
+            header: 'Title',
+            accessorKey: 'title',
         },
         {
             header: 'Author Name',
             accessorKey: 'authorName',
         },
         {
-            header: 'Title',
-            accessorKey: 'title',
-        }
+            header: 'Author Profile',
+            accessorKey: 'authorProfile',
+            cell: (info) => <span>
+                <img src={info?.getValue()} alt="" className="rounded-full w-10 h-10" />
+            </span>
+        },
 
     ]
 
@@ -54,12 +54,12 @@ const FeaturedBlogs = () => {
     })
     return (
 
-        <div className="lg:container lg:mx-auto mx-4 mt-12 w3-container">
-            <table className="w3-table-all">
+        <div className="lg:container lg:mx-auto mx-4 mt-12 ">
+            <table className="w-full text-left border">
                 {
                     table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map(header => <th key={header.id}>
+                        <tr key={headerGroup.id} className="bg-indigo-600">
+                            {headerGroup.headers.map(header => <th key={header.id} className="capitalize px-3 py-2">
 
                                 {flexRender(header.column.columnDef.header, header.getContext())}
                             </th>)}
@@ -69,11 +69,13 @@ const FeaturedBlogs = () => {
                 }
                 <tbody>
                     {
-                        table.getRowModel().rows.map(row => (
-                            <tr key={row.id}>
+                        table.getRowModel().rows.map((row, idx) => (
+                            <tr key={row.id} className={
+                                `${idx % 2 === 0 ? 'bg-white' : 'bg-gray-200'}`
+                            } >
                                 {
                                     row.getVisibleCells().map(cell => (
-                                        <td key={cell.id}>
+                                        <td key={cell.id} className="px-3 py-2 mx-auto">
                                           
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </td>

@@ -5,6 +5,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import Nodata from "../component/Nodata";
 
 
 const Wishlist = () => {
@@ -44,10 +45,13 @@ console.log(list);
     }
 
     console.log(list);
+    if(list.length <= 0){
+        return <Nodata text={'Your wishlist data not found'}/>
+    }
     return (
         <div className="lg:container lg:mx-auto mx-4">
-            <div className="my-16">
-                <h1>Your Wishlisted blogs</h1>
+            <div className="my-16 text-center text-3xl font-semibold text-green-800 flex justify-center">
+                <h1 className="border-b-2 pb-2 px-4 border-pink-600">Your Wishlisted blogs</h1>
             </div>
             {/* card */}
             <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5 ">
@@ -67,7 +71,7 @@ console.log(list);
                         <a>
                             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{data.title}</h5>
                         </a>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{data.shortDescription.slice(0, 100)}</p>
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{data.shortDescription?.slice(0, 100)}</p>
                        <div className="flex justify-around">
                        <Link to={`/blog/${data._id}`} className="inline-flex   cursor-pointer items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             View details
