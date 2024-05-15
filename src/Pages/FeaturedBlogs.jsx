@@ -93,7 +93,7 @@ const FeaturedBlogs = () => {
                   header.getContext()
                 )}
                 {
-                    {asc: '🔼', dsc: '🔽'} [header.column.getIsSorted() ?? null]
+                    {asc: '🔼', desc: '🔽'} [header.column.getIsSorted() ?? null]
                 }
               </th>
             ))}

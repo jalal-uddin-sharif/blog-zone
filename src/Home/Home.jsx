@@ -1,3 +1,4 @@
+import ContactUs from "../component/ContactUs";
 import Herro from "../component/Herro";
 import MeetOurTeam from "../component/MeetOurTeam";
 import Newsletter from "../component/Newsletter";
@@ -18,6 +19,7 @@ const Home = () => {
             <Herro/>
             <RecentBlogs/>
             <MeetOurTeam/>
+            <ContactUs/>
             <Newsletter/>
         </motion.div>
     );
