@@ -17,7 +17,6 @@ const Comments = ({ id, dbEmail }) => {
         const timestamp = new Date()
 
         const comments = { id, name, email, image, comment, timestamp }
-        console.log(comments);
 
         if(user && dbEmail !== email){
               const data = await myAxios.post("/send-comments", comments)
@@ -44,14 +43,12 @@ const Comments = ({ id, dbEmail }) => {
         queryKey: ['commentsData']
     })
 
-    console.log(data);
+
     const getData = async () => {
         const { data } = await myAxios(`/comments/${id}`)
-        console.log(data);
         return data;
     }
 
-    console.log(dbEmail, user?.email);
     return (
         <div>
             <div class="flex w-full items-center rounded-full">

@@ -5,7 +5,6 @@ import useAuth from "../customHook/useAuth";
 
 const Nav = () => {
   const {user, logOut} = useAuth()
-  console.log(user);
     return (
       <Navbar fluid rounded className="fixed w-full container rounded-b-xl z-30 border">
       <Navbar.Brand as={Link} to='/'>

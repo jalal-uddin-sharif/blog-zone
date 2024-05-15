@@ -10,7 +10,7 @@ const Allblogs = () => {
     const [search, setSearch] = useState("")
 
 
-    // console.log(filter);
+
 
     const { data: blogs = [],
         isLoading, } = useQuery({
@@ -18,7 +18,7 @@ const Allblogs = () => {
             queryKey: ['blogs', filter, search]
         })
 
-    console.log(blogs);
+
 
     const getData = async () => {
         const data = await myAxios(`/blogs?category=${filter}&search=${search}`)

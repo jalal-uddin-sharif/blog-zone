@@ -5,10 +5,9 @@ const Newsletter = () => {
     const handleNewsLetter = async(e) =>{
         e.preventDefault()
     const email = e.target.email.value;
-    console.log({email});
+
         const myAxios = useAxiosSecure()
         const data = await myAxios.post("/newsletter", {email})
-        console.log(data.data);
         if(data.data.insertedId){
             Swal.fire({
                 icon: "success",

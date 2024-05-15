@@ -12,7 +12,7 @@ const Login = () => {
         handleSubmit,
     } = useForm()
     const onSubmit = async(data) => {
-        console.log(data);
+
         loginUser(data?.email, data?.password)
         .then(res => {
             navigate(location?.state || '/')
@@ -21,7 +21,6 @@ const Login = () => {
         })
 
     }
-    console.log(errors);
     return (
         <div>
             <div className="bg-white py-6 sm:py-8 lg:py-12">

@@ -8,7 +8,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 const UpdateBlogs = () => {
     const {id} = useParams()
-    console.log(id);
   const navigate = useNavigate()
 
     const myAxios = useAxiosSecure()
@@ -23,7 +22,6 @@ const UpdateBlogs = () => {
 
     const { image, title, shortDescription, description, category, email, timestamp } = data || [];
 
-    console.log(email);
     const getData = async () => {
         const data = await myAxios(`/blog/${id}`)
         return data.data;
@@ -38,8 +36,6 @@ const UpdateBlogs = () => {
         const shortDescription = form.shortDescription.value;
         const description = form.Description.value;
         const category = form.Category.value;
-    
-        console.log(category);
         const blog = { title, image, shortDescription, description, category, email, timestamp }
         console.table(blog);
 
@@ -52,7 +48,6 @@ const UpdateBlogs = () => {
             });
             navigate(`/blog/${id}`)
         }
-        console.log(data);
     }
     return (
         <div>

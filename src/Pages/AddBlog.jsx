@@ -25,8 +25,7 @@ const AddBlog = () => {
         setCate(false)
         if (category === 'random') {
             return setCate(true)
-        }
-        console.log(category);
+        };
         const blog = { title, image, shortDescription, description, category, email, timestamp, authorName, authorProfile }
         console.table(blog);
 
@@ -39,7 +38,7 @@ const AddBlog = () => {
             });
             form.reset()
         }
-        console.log(data);
+
     }
     return (
         <div>

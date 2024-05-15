@@ -17,7 +17,6 @@ const RecentBlogs = () => {
     queryFn: () => getData(),
     queryKey: ["recentblogs"],
   });
-  console.log(data);
   const getData = async () => {
     const data = await myAxios("/recent-blogs");
     return data.data;
@@ -48,7 +47,6 @@ const RecentBlogs = () => {
     show: { opacity: 1, y: 0 },
   };
 
-  console.log(data);
   return (
     <div className="lg:container lg:mx-auto md:mx-4  mx-4 sm:mx-auto">
       <div>

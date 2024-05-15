@@ -15,7 +15,6 @@ const BlogsCard = ({ blogs, setFilter, setSearch, isLoading }) => {
 
   const navigate = useNavigate()
   const { user } = useAuth()
-  console.log(user?.email);
   const myAxios = useAxiosSecure()
   const { addData } = useAddWishlist()
   const handleSearch = (e) => {
@@ -35,29 +34,18 @@ const BlogsCard = ({ blogs, setFilter, setSearch, isLoading }) => {
       blog.id = blog._id;
       delete blog._id;
     }
-    console.log(blog.id);
+
     const id = blog.id
     const email = user?.email
     const listData = { id, email }
-    console.log(listData);
+  
     addData(listData)
-    // const data = await myAxios.post("/wishlist", listData)
-    // console.log(data.data);
-    // if(data.data.insertedId){
-    //   Swal.fire({
-    //     icon: "success",
-    //     title: "Added to wishlist",
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   });
-    // }
   }
 
   if(isLoading){
     return <LoadingSkeleton/>
   }
 
-  console.log(blogs);
  
 
   return (

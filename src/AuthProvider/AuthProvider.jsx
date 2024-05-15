@@ -34,11 +34,8 @@ const myAxios = useAxiosSecure()
       const unSubscribe = onAuthStateChanged(auth, async(currentUser) => {
         setUser(currentUser);
         const email = currentUser.reloadUserInfo
-        console.log(currentUser);
         if(currentUser.reloadUserInfo){
           const {data} = await myAxios.post('/jwt', email)
-          console.log(currentUser.reloadUserInfo.email);
-          console.log(data);
         } 
         setLoading(false);
       });
@@ -55,10 +52,9 @@ const myAxios = useAxiosSecure()
           setUser(res.user);
           navigate(location?.state || "/");
           
-          // console.log(data);
+    
         })
         .catch((err) =>{
-          //  console.log(err)
           });
     };
     //github login
@@ -70,13 +66,12 @@ const myAxios = useAxiosSecure()
           navigate(location?.state || "/");
         })
         .catch((err) => {
-          // console.log(err)
+         
         });
     };
 
     const logOut = async() => {
       const {data} = await myAxios.post('/logout')
-      console.log(data);
        return signOut(auth)
       };
   

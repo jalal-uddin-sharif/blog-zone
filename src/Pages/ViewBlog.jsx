@@ -18,7 +18,6 @@ const ViewBlog = ({ setFilter }) => {
   const { image, title, shortDescription, description, category, email } =
     data || [];
 
-  console.log(data);
   const getData = async () => {
     const data = await myAxios(`/blog/${id}`);
     return data.data;

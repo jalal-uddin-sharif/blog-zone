@@ -17,10 +17,8 @@ const Register = () => {
     const onSubmit = (data) => {
         const email = data?.email 
         const password = data?.password
-        console.log(data);
 
         createUser(email, password).then(result =>{
-            console.log(result);
             updateProfile(result.user,{
                 displayName: data?.name,
                 photoURL: data?.image
@@ -31,13 +29,11 @@ const Register = () => {
 
         })
         .catch(err =>{
-            console.log(err);
         return toast.error('email already used', {
             autoClose: 1000
         })
         })
     }
-    console.log(errors);
     return (
         <div>
             <div className="bg-white py-6 sm:py-8 lg:py-12">
