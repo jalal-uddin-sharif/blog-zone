@@ -6,11 +6,11 @@ import { useState } from "react";
 import useAuth from "../customHook/useAuth";
 const AddBlog = () => {
     const [cate, setCate] = useState(false)
-    const {user} = useAuth()
+    const { user } = useAuth()
 
     const myAxios = useAxiosSecure()
 
-    const handleForm = async(e) =>{
+    const handleForm = async (e) => {
         e.preventDefault();
         const form = e.target;
         const title = form.Title.value;
@@ -19,23 +19,25 @@ const AddBlog = () => {
         const description = form.Description.value;
         const category = form.Category.value;
         const email = user?.email;
+        const authorName = user?.displayName
+        const authorProfile = user?.photoURL
         const timestamp = new Date()
         setCate(false)
-        if(category === 'random'){
+        if (category === 'random') {
             return setCate(true)
         }
-console.log(category);
-        const blog = {title, image, shortDescription, description, category, email, timestamp}
+        console.log(category);
+        const blog = { title, image, shortDescription, description, category, email, timestamp, authorName, authorProfile }
         console.table(blog);
 
-        const {data} = await myAxios.post('/blogs', blog)
-        if(data.insertedId){
+        const { data } = await myAxios.post('/blogs', blog)
+        if (data.insertedId) {
             Swal.fire({
                 title: "Good job!",
                 text: "You clicked the button!",
                 icon: "success"
-              });
-              form.reset()
+            });
+            form.reset()
         }
         console.log(data);
     }
@@ -60,17 +62,17 @@ console.log(category);
                             <label for="Image" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Image</label>
                             <input required name="Image" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                         </div>
-                        
+
 
                         <div>
                             <label for="Category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 {
                                     cate ? <span className="text-red-700">Must select one option *</span> : "Select an option "
                                 }
-                                </label>
+                            </label>
                             <select id="Category"
-                            name="Category"
-                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                name="Category"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected value="random">Select category</option>
                                 <option value="Tricks">Tricks</option>
                                 <option value="Tech News">Tech News</option>
