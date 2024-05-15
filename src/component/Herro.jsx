@@ -79,23 +79,23 @@ const Herro = () => {
             </a>
           </div>
         </motion.div>
-        <motion.div whileHover={{scale: 1.1}} className="flex items-center justify-center -mx-4 lg:pl-8">
+        <motion.div className="flex items-center justify-center -mx-4 lg:pl-8">
           <div className="flex flex-col items-end px-3">
-            <img
+            <motion.img  whileHover={{scale: 1.1}}
               className="object-cover mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56"
-              src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              src="https://www.technewsworld.com/wp-content/uploads/sites/3/2024/04/Pat-Gelsinger-Intel-Vision-2024-event.jpg"
               alt=""
             />
-            <img
+            <motion.img  whileHover={{scale: 1.1}}
               className="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40"
-              src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              src="https://play-lh.googleusercontent.com/3aWGqSf3T_p3F6wc8FFvcZcnjWlxpZdNaqFVEvPwQ1gTOPkVoZwq6cYvfK9eCkwCXbRY=s256-rw"
               alt=""
             />
           </div>
           <div className="px-3">
-            <img
+            <motion.img  whileHover={{scale: 1.1}}
               className="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80"
-              src="https://images.pexels.com/photos/3182739/pexels-photo-3182739.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
+              src="https://cdn.mos.cms.futurecdn.net/qgxvpnALHuNiawfRTTqu2e-970-80.jpeg.webp"
               alt=""
             />
           </div>

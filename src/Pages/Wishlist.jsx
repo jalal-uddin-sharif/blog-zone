@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import Nodata from "../component/Nodata";
+import LoadingSkeleton from "../component/LoadingSkeleton";
 
 
 const Wishlist = () => {
@@ -45,9 +46,14 @@ console.log(list);
     }
 
     console.log(list);
-    if(list.length <= 0){
-        return <Nodata text={'Your wishlist data not found'}/>
+
+    if(isLoading){
+        return <LoadingSkeleton/>
     }
+    if(list.length <= 0){
+        return <Nodata text={'Your not any blog in you wishlist'} href={"/all-blogs"} buttonName={"Add from blogs"}/>
+    }
+
     return (
         <div className="lg:container lg:mx-auto mx-4">
             <div className="my-16 text-center text-3xl font-semibold text-green-800 flex justify-center">

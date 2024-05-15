@@ -25,7 +25,10 @@ const Allblogs = () => {
         return data.data;
     }
 
-
+    // window.scrollTo({
+    //   top: 0,
+    //   behavior: "smooth"
+    // });
 
     return (
         <div className="lg:conainer lg:mx-auto md:container md:mx-auto mx-4">

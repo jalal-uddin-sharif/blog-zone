@@ -1,14 +1,14 @@
 import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import useAxiosSecure from "../customHook/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import mData from '../MOCK_DATA.json'
 import { useMemo } from "react";
 import useAuth from "../customHook/useAuth";
+import Skeleton from "react-loading-skeleton";
 const FeaturedBlogs = () => {
 
     const {user} = useAuth()
     const myAxios = useAxiosSecure()
-    const { data: blogData, refetch } = useQuery({
+    const { data: blogData, isLoading } = useQuery({
         queryFn: () => getData(),
         queryKey: [user?.email]
     })
@@ -23,12 +23,12 @@ const FeaturedBlogs = () => {
     // const columnHelper = createColumnHelper()
     const columns = [
         {
-            header: 'SI',
+            header: 'SI No',
             accessorKey: 'id',
             cell: (info) => info.row.index + 1
         },
         {
-            header: 'Title',
+            header: 'Blog Title',
             accessorKey: 'title',
         },
         {
@@ -42,23 +42,28 @@ const FeaturedBlogs = () => {
                 <img src={info?.getValue()} alt="" className="rounded-full w-10 h-10" />
             </span>
         },
-
+        
     ]
-
-
+    
+    
     const data = useMemo(() => blogData || [] , [blogData])
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel()
     })
+    if(isLoading){
+        return <div className="lg:container lg:mx-auto mx-4 mt-12 ">
+            <Skeleton count={10}/>
+        </div>
+    }
     return (
 
         <div className="lg:container lg:mx-auto mx-4 mt-12 ">
             <table className="w-full text-left border">
                 {
                     table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id} className="bg-indigo-600">
+                        <tr key={headerGroup.id} className="bg-cyan-600">
                             {headerGroup.headers.map(header => <th key={header.id} className="capitalize px-3 py-2">
 
                                 {flexRender(header.column.columnDef.header, header.getContext())}

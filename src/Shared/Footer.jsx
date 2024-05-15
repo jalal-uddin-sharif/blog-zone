@@ -16,7 +16,7 @@ const Footer = () => {
 
 
                         <p className="mb-6 text-gray-500 sm:pr-8">
-                        Fueling curiosity, igniting minds. Discover thought-provoking articles and join our community of knowledge seekers..</p>
+                        Fueling curiosity, igniting minds. Discover thought-provoking articles and join our community of knowledge seekers.</p>
 
 
                         <div className="flex gap-4">
@@ -141,7 +141,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="border-t py-8 text-center text-sm text-gray-400">© 2021 - Present Flowrift. All rights reserved.</div>
+                <div className="border-t py-8 text-center text-sm text-gray-400">© 2024 - BlogZone. All rights reserved.</div>
             </footer>
         </div>
     );

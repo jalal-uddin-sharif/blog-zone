@@ -62,7 +62,7 @@ const UpdateBlogs = () => {
                     <div className="mb-10 md:mb-16">
                         <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Update Blog</h2>
 
-                        <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">create or add your new blog by following filled below</p>
+                        <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">You can update your blog now</p>
                     </div>
 
                     <form onSubmit={handleForm} className="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
@@ -86,9 +86,11 @@ const UpdateBlogs = () => {
                              id="Category"
                                 name="Category"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="tricks">Tricks</option>
-                                <option value="tech_news">Tech News</option>
-                                <option value="apps_review">Apps review</option>
+                                <option value="Tips & Tricks">Tips & Tricks</option>
+                                <option value="Tech News">Tech News</option>
+                                <option value="Apps">Apps</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Web Tools">Web Tools</option>
                             </select>
                         </div>
 

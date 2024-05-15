@@ -58,9 +58,7 @@ const BlogsCard = ({ blogs, setFilter, setSearch, isLoading }) => {
   }
 
   console.log(blogs);
-  if(blogs.length  <= 0){
-    return <Nodata/>
-  }
+ 
 
   return (
     <div className="lg:container lg:mx-auto mx-4">
@@ -95,7 +93,10 @@ const BlogsCard = ({ blogs, setFilter, setSearch, isLoading }) => {
           </div>
         </div>
       </div>
-      <div className="grid gap-8 row-gap-5 mb-8 w-full lg:grid-cols-4 sm:grid-cols-2">
+      {
+        blogs.length <= 0 ?  <Nodata text={"No data found in for this" }/> :
+        
+          <div className="grid gap-8 row-gap-5 mb-8 w-full lg:grid-cols-4 sm:grid-cols-2">
 
         {
           blogs?.map(blog => (
@@ -134,6 +135,8 @@ const BlogsCard = ({ blogs, setFilter, setSearch, isLoading }) => {
         }
 
       </div>
+      }
+   
     </div>
   );
 };
