@@ -19,7 +19,6 @@ const Home = () => {
             <Herro/>
             <RecentBlogs/>
             <MeetOurTeam/>
-            <ContactUs/>
             <Newsletter/>
         </motion.div>
     );

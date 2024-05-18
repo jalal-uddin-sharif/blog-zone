@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
 const Nodata = ({ text, href, buttonName }) => {
+    if(href === undefined){
+        href = "/"
+    }
+    console.log(typeof href, href);
     return (
         <div className="container mx-auto flex justify-center items-center  min-h">
             <div className="text-center space-y-6 my-20">

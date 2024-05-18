@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/featured-blogs",
-        element: <PrivateRoute><FeaturedBlogs/></PrivateRoute>
+        element: <FeaturedBlogs/>
 
       },
       {

@@ -30,10 +30,10 @@ const ViewBlog = ({ setFilter }) => {
           <Skeleton count={6} className="h-6" />
         </div>
       ) : (
-        <div className="grid gap-6 row-gap-10 lg:grid-cols-2 ">
+        <div className="h-full ">
           <div>
             <img
-              className="object-cover w-full h-56 rounded shadow-lg sm:h-96"
+              className="object-cover w-full h-56 rounded shadow-lg sm:h-[600px]"
               src={image}
               alt=""
             />
@@ -82,9 +82,9 @@ const ViewBlog = ({ setFilter }) => {
             )}
           </div>
 
-          <div className="flex flex-col  justify-center">
-            <div className="max-w-xl mb-6">
-              <h2 className="max-w-lg mb-6 font-sans text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none break-all">
+          <div className="w-full">
+            <div className=" mb-6">
+              <h2 className=" my-6 font-sans text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none break-all">
                 {title}
               </h2>
               <p className="mb-4 text-sm font-bold tracking-widest ">
@@ -99,6 +99,9 @@ const ViewBlog = ({ setFilter }) => {
               </p>
             </div>
           </div>
+          {/* <div>
+            <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam porro vero quod laboriosam totam maiores quibusdam a praesentium autem cum ducimus, sit aliquam aliquid repudiandae iure quia voluptatem natus ut, minima tempora inventore soluta rerum assumenda! Modi porro ratione repellendus voluptatum eius accusantium maxime, magnam iste corrupti nemo voluptatem cupiditate.</h1>
+          </div> */}
         </div>
       )}
 

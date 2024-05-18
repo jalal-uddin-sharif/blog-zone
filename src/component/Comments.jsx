@@ -56,7 +56,7 @@ const Comments = ({ id, dbEmail }) => {
                 <span class="text-black text-lg font-semibold leading-8 px-8 py-3">Comments</span>
                 <div class="flex-1 border-b border-gray-300"></div>
             </div>
-            <div className="border p-4 w-2/3 bg-gray-100 rounded-md">
+            <div className="border  p-4 lg:w-2/3 bg-gray-100 rounded-md w-full">
                 <div className="flex items-center gap-x-2">
                     <img className="object-cover w-16 h-16 rounded-full" src={user?.photoURL} alt="" />
 
@@ -68,7 +68,7 @@ const Comments = ({ id, dbEmail }) => {
 
                 </div>
                 <form onSubmit={handleComments}>
-                    <div className="flex gap-2 mt-3">
+                    <div className="flex gap-2 mt-3 ">
                         <textarea required disabled={dbEmail === user?.email ? true : false} placeholder={dbEmail === user?.email ? "You cannot comment your own post" : "post your comment"} name="comment" id="comment" cols="50" rows="1" className="rounded-full"></textarea>
                         <button disabled={dbEmail === user?.email ? true : false}
                             class="px-6 border py-3 font-sans text-xs font-bold bg-green-500 text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-green-400 active:bg-gray-900/20"
@@ -81,7 +81,7 @@ const Comments = ({ id, dbEmail }) => {
             </div>
             {
                 data?.map(com => (
-                    <div key={com._id} className="border p-4 my-4 w-2/3 bg-gray-50 rounded-md">
+                    <div key={com._id} className="border  p-4 my-4 lg:w-2/3 w-full bg-gray-50 rounded-md">
                         <div className="flex items-center gap-x-2">
                             <img className="object-cover w-12 h-12 rounded-full" src={com.image} alt="" />
 
@@ -97,8 +97,6 @@ const Comments = ({ id, dbEmail }) => {
                     </div>
                 ))
             }
-
-
         </div>
     );
 };
