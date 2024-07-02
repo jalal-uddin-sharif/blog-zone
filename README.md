@@ -27,3 +27,13 @@ Check out the live demo of our website [here](https://blogzone-bf45b.web.app).
 - **Backend:**
   - Express.js
   - MongoDB
+
+  ### Clone the Repository
+
+1. Open your terminal.
+2. Navigate to the directory where you want to clone the repository.
+3. cd path/to/your/directory
+4. git clone https://github.com/jalal-uddin-sharif/blog-zone.git
+5. cd blog-client
+6. npm install
+7. npm run dev
